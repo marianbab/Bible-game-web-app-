@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -217,7 +218,7 @@
             const btn = document.createElement('button');
             btn.className = 'book-btn';
             btn.textContent = book;
-            btn.id = book-btn-${index};
+            btn.id = `book-btn-${index}`;
             btn.onclick = () => selectBook(book, btn);
             container.appendChild(btn);
         });
@@ -262,7 +263,7 @@
             feedback.innerHTML = 'Výborne! Zoradil(a) si knihy úplne presne.';
         } else {
             feedback.className = 'feedback error';
-            feedback.innerHTML = Žiaľ, nebolo to správne.<br>Správne poradie: <strong>${correctOrder.join(' ➔ ')}</strong>;
+            feedback.innerHTML = `Žiaľ, nebolo to správne.<br>Správne poradie: <strong>${correctOrder.join(' ➔ ')}</strong>`;
         }
 
         document.getElementById('score-correct').textContent = correctCount;
@@ -275,4 +276,5 @@
 
 </body>
 </html>
+
 
