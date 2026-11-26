@@ -1,18 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoraď biblické knihy</title>
-
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -28,9 +25,9 @@
         .container {
             background: #ffffff;
             width: 100%;
-            max-width: 480px;
-            padding: 24px;
-            border-radius: 18px;
+            max-width: 440px;
+            padding: 28px 24px;
+            border-radius: 16px;
             box-shadow: 0 10px 25px rgba(16, 42, 67, 0.08);
             text-align: center;
         }
@@ -42,7 +39,7 @@
             font-weight: 600;
             color: #486581;
             background: #f8fafc;
-            padding: 10px 14px;
+            padding: 8px 14px;
             border-radius: 8px;
             margin-bottom: 18px;
         }
@@ -50,44 +47,9 @@
         h1 {
             font-size: 1.35rem;
             line-height: 1.4;
-            margin-bottom: 16px;
-            color: #102a43;
-        }
-
-        /* Prepínanie režimov */
-
-        .mode-switch {
-            display: flex;
-            gap: 8px;
-            padding: 5px;
-            background: #eaf0f6;
-            border-radius: 12px;
             margin-bottom: 20px;
-        }
-
-        .mode-btn {
-            flex: 1;
-            padding: 11px 8px;
-            border: none;
-            border-radius: 9px;
-            background: transparent;
-            color: #486581;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .mode-btn.active {
-            background: white;
             color: #102a43;
-            box-shadow: 0 2px 6px rgba(16, 42, 67, 0.1);
         }
-
-        .mode-btn:hover {
-            filter: brightness(0.97);
-        }
-
-        /* Pôvodný režim */
 
         .books-list {
             display: flex;
@@ -102,7 +64,7 @@
             border: 2px solid #d9e2ec;
             border-radius: 10px;
             padding: 12px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.15s ease;
@@ -121,196 +83,6 @@
             cursor: default;
         }
 
-        /* LEGO režim */
-
-        #lego-mode {
-            display: none;
-        }
-
-        .lego-instructions {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #486581;
-            margin-bottom: 14px;
-        }
-
-        .tower-area {
-            background:
-                linear-gradient(to bottom, #f8fafc, #edf2f7);
-            border: 2px dashed #cbd5e1;
-            border-radius: 14px;
-            min-height: 270px;
-            padding: 18px 10px 12px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .tower-label {
-            position: absolute;
-            top: 10px;
-            left: 0;
-            right: 0;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #829ab1;
-        }
-
-        .tower {
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-            margin-top: 25px;
-            min-height: 10px;
-        }
-
-        .tower-brick {
-            min-height: 42px;
-            width: 94%;
-            max-width: 360px;
-            padding: 7px 8px 5px;
-            border-radius: 5px;
-            border: 2px solid rgba(0, 0, 0, 0.15);
-            box-shadow:
-                inset 0 -5px 0 rgba(0, 0, 0, 0.10),
-                0 2px 2px rgba(0, 0, 0, 0.08);
-            color: white;
-            font-size: 0.88rem;
-            font-weight: 800;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            animation: brickDrop 0.3s ease-out;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .studs {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 3px;
-        }
-
-        .stud {
-            width: 12px;
-            height: 7px;
-            border-radius: 4px 4px 2px 2px;
-            background: rgba(255, 255, 255, 0.35);
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
-        }
-
-        @keyframes brickDrop {
-            from {
-                transform: translateY(-18px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .lego-books {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .lego-book-btn {
-            width: 100%;
-            border: 2px solid rgba(0, 0, 0, 0.13);
-            border-radius: 7px;
-            min-height: 62px;
-            padding: 8px 10px 6px;
-            color: white;
-            font-size: 1rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow:
-                inset 0 -5px 0 rgba(0, 0, 0, 0.12),
-                0 3px 4px rgba(0, 0, 0, 0.08);
-            transition: transform 0.15s, filter 0.15s;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-        }
-
-        .lego-book-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            filter: brightness(1.08);
-        }
-
-        .lego-book-btn:active:not(:disabled) {
-            transform: translateY(1px);
-        }
-
-        .lego-book-btn:disabled {
-            opacity: 0.38;
-            filter: grayscale(0.5);
-            cursor: default;
-            transform: none;
-        }
-
-        .lego-book-btn .studs {
-            margin-bottom: 5px;
-        }
-
-        /* Farby LEGO kociek */
-
-        .lego-red {
-            background: #e53935;
-        }
-
-        .lego-blue {
-            background: #1976d2;
-        }
-
-        .lego-yellow {
-            background: #fbc02d;
-            color: #5d4037;
-            text-shadow: none;
-        }
-
-        .lego-green {
-            background: #43a047;
-        }
-
-        .lego-orange {
-            background: #fb8c00;
-        }
-
-        .lego-purple {
-            background: #8e44ad;
-        }
-
-        .lego-cyan {
-            background: #00acc1;
-        }
-
-        .lego-pink {
-            background: #ec407a;
-        }
-
-        .lego-dark {
-            background: #546e7a;
-        }
-
-        .lego-lime {
-            background: #7cb342;
-        }
-
-        /* Výber a výsledky */
-
         .selection-box {
             min-height: 54px;
             background-color: #f8fafc;
@@ -321,11 +93,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: #334e68;
             font-weight: 600;
-            line-height: 1.5;
-            overflow-wrap: anywhere;
+            line-height: 1.4;
         }
 
         .feedback {
@@ -334,7 +105,7 @@
             border-radius: 10px;
             margin-bottom: 18px;
             font-weight: 600;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .feedback.success {
@@ -359,10 +130,10 @@
 
         .ctrl-btn {
             flex: 1;
-            padding: 12px 8px;
+            padding: 12px;
             border: none;
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             transition: opacity 0.15s ease;
@@ -381,84 +152,19 @@
             background-color: #bae6fd;
             color: #0c4a6e;
         }
-
-        @media (max-width: 380px) {
-            .container {
-                padding: 18px 14px;
-            }
-
-            .tower-brick {
-                font-size: 0.78rem;
-            }
-
-            .lego-book-btn {
-                font-size: 0.9rem;
-            }
-
-            .ctrl-btn {
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
-
 <body>
 
 <div class="container">
-
     <div class="score-bar">
         <span>Správne: <strong id="score-correct">0</strong></span>
         <span>Kolá: <strong id="score-total">0</strong></span>
     </div>
 
-    <h1>Zoraď biblické knihy</h1>
+    <h1>Klikaj na knihy v poradí,<br>v akom nasledujú v Biblii:</h1>
 
-    <!-- Prepínanie herných režimov -->
-    <div class="mode-switch">
-        <button class="mode-btn active" id="classic-mode-btn"
-                onclick="switchMode('classic')">
-            📖 Klasický režim
-        </button>
-
-        <button class="mode-btn" id="lego-mode-btn"
-                onclick="switchMode('lego')">
-            🧱 LEGO režim
-        </button>
-    </div>
-
-    <!-- KLASICKÝ REŽIM -->
-    <div id="classic-mode">
-
-        <h1 style="font-size: 1.05rem;">
-            Klikaj na knihy v poradí,<br>
-            v akom nasledujú v Biblii:
-        </h1>
-
-        <div class="books-list" id="books-container"></div>
-
-    </div>
-
-    <!-- LEGO REŽIM -->
-    <div id="lego-mode">
-
-        <p class="lego-instructions">
-            🧱 Vyber biblické knihy v správnom poradí.
-            Každá nová kocka sa uloží na vrch veže!
-        </p>
-
-        <div class="tower-area">
-
-            <div class="tower-label">
-                🏗️ Tvoja LEGO veža
-            </div>
-
-            <div class="tower" id="lego-tower"></div>
-
-        </div>
-
-        <div class="lego-books" id="lego-books-container"></div>
-
-    </div>
+    <div class="books-list" id="books-container"></div>
 
     <div class="selection-box" id="selection-display">
         Tvoje poradie:
@@ -467,264 +173,103 @@
     <div class="feedback" id="feedback-box"></div>
 
     <div class="controls">
-        <button class="ctrl-btn btn-reset" onclick="resetSelection()">
-            Vymazať výber
-        </button>
-
-        <button class="ctrl-btn btn-new" onclick="startNewGame()">
-            Nové knihy
-        </button>
+        <button class="ctrl-btn btn-reset" onclick="resetSelection()">Vymazať výber</button>
+        <button class="ctrl-btn btn-new" onclick="startNewGame()">Nové knihy</button>
     </div>
-
 </div>
 
 <script>
     const BIBLICKE_KNIHY = [
-        '1. Mojžišova', '2. Mojžišova', '3. Mojžišova',
-        '4. Mojžišova', '5. Mojžišova', 'Jozua', 'Sudcovia', 'Rút',
-        '1. Samuelova', '2. Samuelova', '1. Kráľov', '2. Kráľov',
-        '1. Kroník', '2. Kroník', 'Ezdráš', 'Nehemiáš',
-        'Ester', 'Jób', 'Žalmy', 'Príslovia', 'Kazateľ',
-        'Šalamúnova pieseň', 'Izaiáš', 'Jeremiáš',
-        'Plač Jeremiáša', 'Ezechiel', 'Daniel', 'Ozeáš',
-        'Joel', 'Amos', 'Abdiáš', 'Jonáš', 'Micheáš',
-        'Náhum', 'Habakuk', 'Sofoniáš', 'Ageus',
-        'Zachariáš', 'Malachiáš', 'Matúš', 'Marek', 'Lukáš',
-        'Ján', 'Skutky apoštolov', 'Rimanom',
-        '1. Korinťanom', '2. Korinťanom', 'Galaťanom',
-        'Efezanom', 'Filipanom', 'Kolosanom',
-        '1. Tesaloničanom', '2. Tesaloničanom',
-        '1. Timotejovi', '2. Timotejovi', 'Títovi',
-        'Filemónovi', 'Hebrejom', 'Jakub', '1. Petra',
-        '2. Petra', '1. Jána', '2. Jána', '3. Jána',
+        '1. Mojžišova', '2. Mojžišova', '3. Mojžišova', '4. Mojžišova', '5. Mojžišova', 'Jozua', 'Sudcovia', 'Rút', 
+        '1. Samuelova', '2. Samuelova', '1. Kráľov', '2. Kráľov', '1. Kroník', '2. Kroník', 'Ezdráš', 'Nehemiáš', 
+        'Ester', 'Jób', 'Žalmy', 'Príslovia', 'Kazateľ', 'Šalamúnova pieseň', 'Izaiáš', 'Jeremiáš', 'Plač Jeremiáša', 'Ezechiel', 
+        'Daniel', 'Ozeáš', 'Joel', 'Amos', 'Abdiáš', 'Jonáš', 'Micheáš', 'Náhum', 'Habakuk', 'Sofoniáš', 
+        'Ageus', 'Zachariáš', 'Malachiáš', 'Matúš', 'Marek', 'Lukáš', 'Ján', 'Skutky apoštolov', 'Rimanom', '1. Korinťanom', 
+        '2. Koroniťanom', 'Galaťanom', 'Efezanom', 'Filipanom', 'Kolosanom', '1. Tesaloničanom', '2. Tesaloničanom', '1. Timotejovi', '2. Timotejovi', 
+        'Títovi', 'Filemónovi', 'Hebrejom', 'Jakub', '1. Petra', '2. Petra', '1. Jána', '2. Jána', '3. Jána', 
         'Júda', 'Zjavenie'
-    ];
-
-    const LEGO_COLORS = [
-        'lego-red',
-        'lego-blue',
-        'lego-yellow',
-        'lego-green',
-        'lego-orange',
-        'lego-purple',
-        'lego-cyan',
-        'lego-pink',
-        'lego-dark',
-        'lego-lime'
     ];
 
     let currentBooks = [];
     let correctOrder = [];
     let userOrder = [];
-
     let correctCount = 0;
     let totalRounds = 0;
     let roundFinished = false;
 
-    let currentMode = 'classic';
-
-    // Náhodný výber kníh
     function getRandomBooks(count) {
-        const shuffled = [...BIBLICKE_KNIHY];
-
-        // Fisher-Yates shuffle
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-
+        const shuffled = [...BIBLICKE_KNIHY].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     }
 
-    // Nové kolo
     function startNewGame() {
         currentBooks = getRandomBooks(5);
-
-        correctOrder = BIBLICKE_KNIHY.filter(book =>
-            currentBooks.includes(book)
-        );
-
+        correctOrder = BIBLICKE_KNIHY.filter(book => currentBooks.includes(book));
         resetSelection();
         renderButtons();
-        renderLegoButtons();
     }
 
-    // Prepnutie herného režimu
-    function switchMode(mode) {
-        currentMode = mode;
-
-        document.getElementById('classic-mode').style.display =
-            mode === 'classic' ? 'block' : 'none';
-
-        document.getElementById('lego-mode').style.display =
-            mode === 'lego' ? 'block' : 'none';
-
-        document.getElementById('classic-mode-btn').classList.toggle(
-            'active', mode === 'classic'
-        );
-
-        document.getElementById('lego-mode-btn').classList.toggle(
-            'active', mode === 'lego'
-        );
-
-        // Pri zmene režimu sa výber v aktuálnom kole resetuje
-        resetSelection();
-        renderButtons();
-        renderLegoButtons();
-    }
-
-    // Klasické tlačidlá
     function renderButtons() {
         const container = document.getElementById('books-container');
         container.innerHTML = '';
 
         currentBooks.forEach((book, index) => {
             const btn = document.createElement('button');
-
             btn.className = 'book-btn';
             btn.textContent = book;
-            btn.id = `book-btn-${index}`;
-
+            btn.id = book-btn-${index};
             btn.onclick = () => selectBook(book, btn);
-
             container.appendChild(btn);
         });
     }
 
-    // Vytvorenie LEGO výstupkov
-    function createStuds(number = 4) {
-        const studs = document.createElement('div');
-        studs.className = 'studs';
-
-        for (let i = 0; i < number; i++) {
-            const stud = document.createElement('div');
-            stud.className = 'stud';
-            studs.appendChild(stud);
-        }
-
-        return studs;
-    }
-
-    // LEGO tlačidlá
-    function renderLegoButtons() {
-        const container = document.getElementById('lego-books-container');
-        container.innerHTML = '';
-
-        currentBooks.forEach((book, index) => {
-            const btn = document.createElement('button');
-
-            btn.className = 'lego-book-btn ' + LEGO_COLORS[index];
-            btn.id = `lego-btn-${index}`;
-
-            btn.appendChild(createStuds(4));
-
-            const label = document.createElement('span');
-            label.textContent = book;
-            btn.appendChild(label);
-
-            btn.onclick = () => selectBook(book, btn);
-
-            container.appendChild(btn);
-        });
-    }
-
-    // Zobrazenie veže
-    function renderTower() {
-        const tower = document.getElementById('lego-tower');
-        tower.innerHTML = '';
-
-        userOrder.forEach((book, index) => {
-            const brick = document.createElement('div');
-
-            brick.className = 'tower-brick ' + LEGO_COLORS[
-                currentBooks.indexOf(book)
-            ];
-
-            brick.appendChild(createStuds(4));
-
-            const label = document.createElement('span');
-            label.textContent = book;
-
-            brick.appendChild(label);
-            tower.appendChild(brick);
-        });
-    }
-
-    // Reset výberu
     function resetSelection() {
         userOrder = [];
         roundFinished = false;
-
-        document.getElementById('selection-display').textContent =
-            'Tvoje poradie:';
-
+        document.getElementById('selection-display').textContent = 'Tvoje poradie: ';
+        
         const feedback = document.getElementById('feedback-box');
         feedback.className = 'feedback';
         feedback.innerHTML = '';
 
-        document.querySelectorAll('.book-btn, .lego-book-btn')
-            .forEach(btn => btn.disabled = false);
-
-        renderTower();
+        const buttons = document.querySelectorAll('.book-btn');
+        buttons.forEach(btn => btn.disabled = false);
     }
 
-    // Vybratie knihy
     function selectBook(book, btnElement) {
         if (roundFinished) return;
 
         btnElement.disabled = true;
         userOrder.push(book);
 
-        document.getElementById('selection-display').textContent =
+        document.getElementById('selection-display').textContent = 
             'Tvoje poradie: ' + userOrder.join(' ➔ ');
-
-        // LEGO režim aktualizuje vežu
-        if (currentMode === 'lego') {
-            renderTower();
-        }
 
         if (userOrder.length === 5) {
             evaluateGame();
         }
     }
 
-    // Vyhodnotenie kola
     function evaluateGame() {
         roundFinished = true;
         totalRounds++;
-
-        const isCorrect =
-            JSON.stringify(userOrder) === JSON.stringify(correctOrder);
-
+        const isCorrect = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
         const feedback = document.getElementById('feedback-box');
 
         if (isCorrect) {
             correctCount++;
-
             feedback.className = 'feedback success';
-
-            feedback.innerHTML =
-                currentMode === 'lego'
-                ? '🎉 Výborne! Postavil(a) si LEGO vežu so všetkými knihami v správnom biblickom poradí!'
-                : '🎉 Výborne! Zoradil(a) si knihy úplne presne.';
+            feedback.innerHTML = 'Výborne! Zoradil(a) si knihy úplne presne.';
         } else {
             feedback.className = 'feedback error';
-
-            feedback.innerHTML =
-                'Žiaľ, nebolo to správne.<br>' +
-                'Správne poradie:<br><strong>' +
-                correctOrder.join(' ➔ ') +
-                '</strong>';
+            feedback.innerHTML = Žiaľ, nebolo to správne.<br>Správne poradie: <strong>${correctOrder.join(' ➔ ')}</strong>;
         }
 
-        document.getElementById('score-correct').textContent =
-            correctCount;
-
-        document.getElementById('score-total').textContent =
-            totalRounds;
+        document.getElementById('score-correct').textContent = correctCount;
+        document.getElementById('score-total').textContent = totalRounds;
     }
 
-    // Spustenie prvého kola
+    // Spustenie prvého kola po načítaní stránky
     startNewGame();
 </script>
 
